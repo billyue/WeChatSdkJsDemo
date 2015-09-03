@@ -31,6 +31,9 @@ var raw = function (args) {
 * @returns
 */
 var sign = function (jsapi_ticket, url) {
+  // url = "http://192.168.0.24:3000/token/client";
+  console.log("sign====> " + url);
+
   var ret = {
     jsapi_ticket: jsapi_ticket,
     nonceStr: createNonceStr(),

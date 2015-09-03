@@ -23,11 +23,14 @@ router.get('/', function(req, res) {
 			}
 
 		  	var ticket=JSON.parse(body).ticket;
-		  	console.log('ticket: '+ticket);
+		  	console.log('ticket2: '+ticket);
 
 		  	var port = req.app.settings.port;
 		  	var url=req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.path;
 		  	var result=sign(ticket,url);
+
+		  	console.log("===========> Entrance 1");
+		  	console.log(result);
 
 		  	res.send(result);
 		});
@@ -41,7 +44,11 @@ router.get('/sign',function(req,res){
 	var now=new Date().getTime()/1000;
 	var callback=function(){
 		var url= req.param('url');
+		console.log("signing url " + url);
 		var result=sign(globalToken.ticket,url);
+
+	  	console.log("===========> Entrance 2");
+	  	console.log(result);
 		res.send(result);
 	}
 
@@ -89,7 +96,7 @@ function refreshGlobalToken(req,res,callback){
 			}
 		  
 		  	var ticket=JSON.parse(body).ticket;
-		  	console.log('ticket: '+ticket);
+		  	console.log('ticket1: '+ticket);
 
 		  	globalToken.time=new Date().getTime()/1000;
 		  	globalToken.ticket=ticket;
@@ -100,8 +107,12 @@ function refreshGlobalToken(req,res,callback){
 
 function renderClient(req,res){
 	var port = req.app.settings.port;
-	var url=req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.path;
+	var url=req.protocol + '://' + req.host  + ( port == 80 || port == 443 ? '' : ':'+port ) + req.originalUrl;
+	console.log(url)
+
 	var result=sign(globalToken.ticket,url);
+	console.log(result);
+
 	res.render('client',{config:config,result:result});
 }
 
