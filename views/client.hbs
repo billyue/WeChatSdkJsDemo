@@ -77,14 +77,22 @@ wx.ready(function(){
 
 	wx.checkJsApi({
 		jsApiList: [
-        'getNetworkType',
-        'previewImage'
+        'startRecord',
+        'stopRecord',
+        'playVoice',
+        'stopVoice',
+        'uploadVoice',
+        'downloadVoice'
       ],
       success: function (res) {
         alert(JSON.stringify(res));
       }
 	});
 
+  var voice = {
+    localId: '',
+    serverId: ''
+  };
 
   // 4 音频接口
   // 4.2 开始录音
