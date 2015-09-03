@@ -68,6 +68,43 @@ wx.ready(function(){
       }
 	});
 
+  var shareTitle = '微信分享标题';
+  var shareDesc = '微信分享描述';
+  var shareLink = '微信分享链接';
+  var shareImg = '微信分享封面标题';
+
+  // 分享给朋友事件绑定
+  wx.onMenuShareAppMessage({
+    title: shareTitle,
+    desc: shareDesc,
+    link: shareLink,
+    imgUrl: shareImg
+  });
+
+  // 分享到朋友圈
+  wx.onMenuShareTimeline({
+    title: shareTitle,
+    link: shareLink,
+    imgUrl: shareImg
+  });
+
+  // 分享到QQ
+  wx.onMenuShareQQ({
+    title: shareTitle,
+    desc: shareDesc,
+    link: shareLink,
+    imgUrl: shareImg
+  });
+
+  // 分享到微博
+  wx.onMenuShareWeibo({
+    title: shareTitle,
+    desc: shareDesc,
+    link: shareLink,
+    imgUrl: shareImg
+  });
+
+
 });
 
 wx.error(function(res){
