@@ -26,7 +26,6 @@
 <script>
 
 console.log('wx config start ..');
-alert(location.href.split('#')[0])
 
 wx.config({
       debug: true,
@@ -97,7 +96,6 @@ wx.ready(function(){
   // 4 音频接口
   // 4.2 开始录音
   document.querySelector('#startRecord').onclick = function () {
-    alert("==> start recording ");
     wx.startRecord({
       cancel: function () {
         alert('用户拒绝授权录音');
@@ -107,7 +105,6 @@ wx.ready(function(){
 
   // 4.3 停止录音
   document.querySelector('#stopRecord').onclick = function () {
-    alert("==> stop recording ");
     wx.stopRecord({
       success: function (res) {
         voice.localId = res.localId;
